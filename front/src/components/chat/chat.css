@@ -1,0 +1,52 @@
+.chat-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 70vh;
+    padding: 20px;
+    overflow-y: scroll;
+    scroll-behavior: smooth;
+    max-width: 80%;
+    margin: 0 auto;
+  }
+  
+  .user-message {
+    align-self: flex-start;
+    background-color: #e0f7fa;
+    padding: 10px;
+    border-radius: 10px;
+    max-width: 60%;
+    animation: fadeIn 0.5s;
+  }
+  
+  .assistant-message {
+    align-self: flex-end;
+    background-color: #fff9c4;
+    padding: 10px;
+    border-radius: 10px;
+    max-width: 60%;
+    animation: fadeInReverse 0.5s;
+  }
+  
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+      transform: translateX(-20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateX(0);
+    }
+  }
+  
+  @keyframes fadeInReverse {
+    from {
+      opacity: 0;
+      transform: translateX(20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateX(0);
+    }
+  }
+  
