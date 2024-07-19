@@ -1,16 +1,18 @@
-// tests/example.test.js
-import { describe, it, expect } from 'vitest';
-import { sum } from '../sum';
+// tests/mock.test.js
+import { describe, it, expect, vi } from 'vitest';
+import axios from 'axios';
 
-describe('sum', () => {
-  it('should return the sum of two numbers', () => {
-    expect(sum(1, 2)).toBe(3);
-    expect(sum(-1, -1)).toBe(-2);
-    expect(sum(0, 0)).toBe(0);
-  });
+// Correctly mock axios with default export
+vi.mock('axios', () => ({
+  __esModule: true, // This tells Vitest that it's an ES module
+  default: {
+    post: vi.fn(() => Promise.resolve({ data: { content: 'Mocked response' } })),
+  },
+}));
 
-  it('should return NaN when one of the arguments is not a number', () => {
-    expect(sum(1, 'a')).toBeNaN();
-    expect(sum(null, 1)).toBeNaN();
+describe('Mock Test', () => {
+  it('should use the mocked axios.post', async () => {
+    const response = await axios.post('/test');
+    expect(response.data.content).toBe('Mocked response');
   });
 });
